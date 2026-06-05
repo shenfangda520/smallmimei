@@ -1,0 +1,76 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.header {
+  padding-bottom: 0.25rem;
+}
+
+.listCard {
+  margin-top: 24px;
+  border-color: var(--glass-border, #eddcca) !important;
+  box-shadow: var(--shadow-panel, 0 18px 42px rgba(111, 74, 44, 0.12)), inset 0 1px 0 var(--glass-highlight);
+  backdrop-filter: var(--glass-blur);
+}
+
+.listCard :global(.ant-card-head) {
+  border-bottom-color: color-mix(in srgb, var(--glass-border) 72%, transparent);
+  min-height: 52px;
+}
+
+.listCard :global(.ant-card-head-title) {
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.historyList :global(.ant-list-item) {
+  padding: 18px 20px !important;
+  transition: background 0.18s ease;
+}
+
+.historyList :global(.ant-list-item:hover) {
+  background: var(--bg-hover, #141824);
+}
+
+.historyList :global(.ant-list-item:last-child) {
+  border-block-end: none !important;
+}
+
+.listItem :global(.ant-list-item-meta) {
+  align-items: center;
+}
+
+.listItem :global(.ant-list-item-meta-title) {
+  margin-bottom: 6px !important;
+}
+
+.itemTitle {
+  max-width: min(100%, 520px);
+}
+
+.metaLine {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.metaBlock {
+  margin-top: 4px;
+}
+
+.paginationBar {
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--glass-border, #eddcca);
+}
+
+.thumbFallback {
+  background: #fff1e2 !important;
+  color: #8f7f71 !important;
+  font-weight: 700;
+}
+
+.thumbImg :global(img) {
+  object-fit: cover;
+}

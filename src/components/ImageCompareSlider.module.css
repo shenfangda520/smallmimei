@@ -1,0 +1,157 @@
+.root {
+  position: relative;
+  user-select: none;
+  touch-action: none;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.compareWrap {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding-inline: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-soft, #65564a);
+}
+
+.legendSide {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.legendMark {
+  flex-shrink: 0;
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--muted, #8f7f71);
+}
+
+.legendMark[data-side='original'] {
+  background: var(--border, #eddcca);
+}
+
+.legendMark[data-side='processed'] {
+  background: color-mix(in srgb, var(--accent, #d86f8a) 70%, var(--muted, #8f7f71));
+}
+
+.stack {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.stage {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.imgProcessed {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  vertical-align: top;
+}
+
+.clip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 与底层压缩图同高、按宽高比伸宽，由左侧 clip 裁切；不依赖 JS 测量，避免 Modal 内首帧宽高为 0 导致原图不渲染 */
+.imgOriginal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  pointer-events: none;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  background: color-mix(in srgb, var(--accent, #d86f8a) 85%, #fff);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--border-strong, #dec4ae) 60%, transparent);
+  cursor: ew-resize;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* PC：不挡鼠标，由整块预览区跟随光标；圆形手柄见下方 @media 隐藏 */
+@media (hover: hover) and (pointer: fine) {
+  .divider {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .stack {
+    cursor: ew-resize;
+  }
+
+  .divider::before,
+  .divider::after {
+    display: none;
+  }
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-elevated, #fffdf8);
+  border: 2px solid color-mix(in srgb, var(--accent, #d86f8a) 80%, transparent);
+  box-shadow: 0 2px 10px color-mix(in srgb, #000 35%, transparent);
+}
+
+.divider::after {
+  content: '‖';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #d86f8a);
+  line-height: 1;
+  letter-spacing: -0.12em;
+}
+
+.hint {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted, #8f7f71);
+}
